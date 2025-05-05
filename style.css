@@ -1,38 +1,55 @@
-// Obtém a chave da API a partir de uma variável de ambiente
-const apiKey = process.env.EXCHANGE_API_KEY; // Configurado no Vercel
-
-// Função para obter a cotação
-async function obterCotacao() {
-  const origem = document.getElementById('moeda-origem').value;
-  const destino = document.getElementById('moeda-destino').value;
-  
-  const url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${origem}`;
-
-  try {
-    const resposta = await fetch(url);
-    const dados = await resposta.json();
-    
-    const cotacao = dados.conversion_rates[destino];
-    document.getElementById('cotacao').textContent = `1 ${origem} = ${cotacao} ${destino}`;
-    
-    return cotacao;
-  } catch (erro) {
-    alert('Erro ao buscar cotação. Tente novamente.');
-    console.error(erro);
-  }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-// Função para realizar a conversão
-async function converter() {
-  const valor = parseFloat(document.getElementById('valor').value);
-  
-  if (isNaN(valor)) {
-    alert('Por favor, insira um valor válido.');
-    return;
-  }
+.container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: center;
+}
 
-  const cotacao = await obterCotacao();
-  const resultado = valor * cotacao;
+h1 {
+  font-size: 24px;
+  color: #333;
+}
 
-  document.getElementById('resultado').textContent = resultado.toFixed(2);
+.senha-container {
+  margin: 20px 0;
+}
+
+#senha {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#gerar {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#gerar:hover {
+  background-color: #45a049;
+}
+
+p {
+  font-size: 16px;
+  color: #555;
 }
