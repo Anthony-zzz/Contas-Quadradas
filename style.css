@@ -1,43 +1,37 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conversor de Moedas</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <h1>Conversor de Moedas</h1>
+const apiKey = 'YOUR_API_KEY'; // Substitua com sua chave da API Exchangerate-API
+
+// Função para obter a cotação
+async function obterCotacao() {
+  const origem = document.getElementById('moeda-origem').value;
+  const destino = document.getElementById('moeda-destino').value;
+  
+  const url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${origem}`;
+
+  try {
+    const resposta = await fetch(url);
+    const dados = await resposta.json();
     
-    <label for="moeda-origem">Moeda de Origem:</label>
-    <select id="moeda-origem">
-      <option value="USD">Dólar (USD)</option>
-      <option value="EUR">Euro (EUR)</option>
-      <option value="BRL">Real (BRL)</option>
-      <option value="GBP">Libra Esterlina (GBP)</option>
-      <!-- Adicione mais moedas conforme necessário -->
-    </select>
-
-    <label for="moeda-destino">Moeda de Destino:</label>
-    <select id="moeda-destino">
-      <option value="BRL">Real (BRL)</option>
-      <option value="USD">Dólar (USD)</option>
-      <option value="EUR">Euro (EUR)</option>
-      <option value="GBP">Libra Esterlina (GBP)</option>
-      <!-- Adicione mais moedas conforme necessário -->
-    </select>
-
-    <label for="valor">Valor:</label>
-    <input type="number" id="valor" placeholder="Digite o valor" />
+    const cotacao = dados.conversion_rates[destino];
+    document.getElementById('cotacao').textContent = `1 ${origem} = ${cotacao} ${destino}`;
     
-    <button onclick="converter()">Converter</button>
+    return cotacao;
+  } catch (erro) {
+    alert('Erro ao buscar cotação. Tente novamente.');
+    console.error(erro);
+  }
+}
 
-    <h3>Resultado: <span id="resultado">0</span></h3>
+// Função para realizar a conversão
+async function converter() {
+  const valor = parseFloat(document.getElementById('valor').value);
+  
+  if (isNaN(valor)) {
+    alert('Por favor, insira um valor válido.');
+    return;
+  }
 
-    <p><strong>Cotação Atual:</strong> <span id="cotacao"></span></p>
-  </div>
+  const cotacao = await obterCotacao();
+  const resultado = valor * cotacao;
 
-  <script src="script.js"></script>
-</body>
-</html>
+  document.getElementById('resultado').textContent = resultado.toFixed(2);
+}
