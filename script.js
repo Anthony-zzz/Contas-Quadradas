@@ -1,60 +1,15 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
+document.getElementById('gerar').addEventListener('click', function() {
+  const senha = gerarSenha();
+  document.getElementById('senha').value = senha;
+  document.getElementById('resultado').textContent = senha;
+});
 
-.container {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-}
-
-h1 {
-  text-align: center;
-}
-
-label {
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-select, input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-h3 {
-  text-align: center;
-  color: #333;
-}
-
-p {
-  font-size: 14px;
-  text-align: center;
+function gerarSenha() {
+  const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?';
+  let senha = '';
+  for (let i = 0; i < 8; i++) {
+    const randomIndex = Math.floor(Math.random() * caracteres.length);
+    senha += caracteres[randomIndex];
+  }
+  return senha;
 }
