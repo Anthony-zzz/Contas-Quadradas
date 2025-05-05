@@ -3,39 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conversor de Moedas</title>
+  <title>Gerador de Senha Aleatória</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>Conversor de Moedas</h1>
-    
-    <label for="moeda-origem">Moeda de Origem:</label>
-    <select id="moeda-origem">
-      <option value="USD">Dólar (USD)</option>
-      <option value="EUR">Euro (EUR)</option>
-      <option value="BRL">Real (BRL)</option>
-      <option value="GBP">Libra Esterlina (GBP)</option>
-    </select>
-
-    <label for="moeda-destino">Moeda de Destino:</label>
-    <select id="moeda-destino">
-      <option value="BRL">Real (BRL)</option>
-      <option value="USD">Dólar (USD)</option>
-      <option value="EUR">Euro (EUR)</option>
-      <option value="GBP">Libra Esterlina (GBP)</option>
-    </select>
-
-    <label for="valor">Valor:</label>
-    <input type="number" id="valor" placeholder="Digite o valor" />
-    
-    <button onclick="converter()">Converter</button>
-
-    <h3>Resultado: <span id="resultado">0</span></h3>
-
-    <p><strong>Cotação Atual:</strong> <span id="cotacao"></span></p>
+    <h1>Gerador de Senha Aleatória</h1>
+    <div class="senha-container">
+      <input type="text" id="senha" readonly>
+      <button id="gerar">Gerar Senha</button>
+    </div>
+    <p><strong>Senha gerada:</strong> <span id="resultado">Clique no botão para gerar</span></p>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
