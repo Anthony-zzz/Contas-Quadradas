@@ -1,32 +1,43 @@
-function calcularRaizes() {
-  const a = parseFloat(document.getElementById("a").value);
-  const b = parseFloat(document.getElementById("b").value);
-  const c = parseFloat(document.getElementById("c").value);
-  const resultado = document.getElementById("resultado");
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor de Moedas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Conversor de Moedas</h1>
+    
+    <label for="moeda-origem">Moeda de Origem:</label>
+    <select id="moeda-origem">
+      <option value="USD">Dólar (USD)</option>
+      <option value="EUR">Euro (EUR)</option>
+      <option value="BRL">Real (BRL)</option>
+      <option value="GBP">Libra Esterlina (GBP)</option>
+      <!-- Adicione mais moedas conforme necessário -->
+    </select>
 
-  if (isNaN(a) || isNaN(b) || isNaN(c)) {
-    resultado.innerHTML = "Por favor, insira valores válidos para a, b e c.";
-    return;
-  }
+    <label for="moeda-destino">Moeda de Destino:</label>
+    <select id="moeda-destino">
+      <option value="BRL">Real (BRL)</option>
+      <option value="USD">Dólar (USD)</option>
+      <option value="EUR">Euro (EUR)</option>
+      <option value="GBP">Libra Esterlina (GBP)</option>
+      <!-- Adicione mais moedas conforme necessário -->
+    </select>
 
-  if (a === 0) {
-    resultado.innerHTML = "O valor de 'a' deve ser diferente de zero.";
-    return;
-  }
+    <label for="valor">Valor:</label>
+    <input type="number" id="valor" placeholder="Digite o valor" />
+    
+    <button onclick="converter()">Converter</button>
 
-  const delta = b * b - 4 * a * c;
-  let mensagem = `Delta (Δ) = ${delta}<br>`;
+    <h3>Resultado: <span id="resultado">0</span></h3>
 
-  if (delta < 0) {
-    mensagem += "Não existem raízes reais.";
-  } else if (delta === 0) {
-    const x = -b / (2 * a);
-    mensagem += `Raiz única: x = ${x}`;
-  } else {
-    const x1 = (-b + Math.sqrt(delta)) / (2 * a);
-    const x2 = (-b - Math.sqrt(delta)) / (2 * a);
-    mensagem += `Duas raízes reais:<br>x₁ = ${x1}<br>x₂ = ${x2}`;
-  }
+    <p><strong>Cotação Atual:</strong> <span id="cotacao"></span></p>
+  </div>
 
-  resultado.innerHTML = mensagem;
-}
+  <script src="script.js"></script>
+</body>
+</html>
