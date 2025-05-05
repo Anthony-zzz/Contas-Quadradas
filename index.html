@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Raízes da Equação Quadrática</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor de Moedas</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Calculadora de Equação Quadrática</h1>
   <div class="container">
-    <label for="a">Coeficiente a:</label>
-    <input type="number" id="a" placeholder="Ex: 1">
+    <h1>Conversor de Moedas</h1>
+    
+    <label for="moeda-origem">Moeda de Origem:</label>
+    <select id="moeda-origem">
+      <option value="USD">Dólar (USD)</option>
+      <option value="EUR">Euro (EUR)</option>
+      <option value="BRL">Real (BRL)</option>
+      <option value="GBP">Libra Esterlina (GBP)</option>
+      <!-- Adicione mais moedas conforme necessário -->
+    </select>
 
-    <label for="b">Coeficiente b:</label>
-    <input type="number" id="b" placeholder="Ex: -3">
+    <label for="moeda-destino">Moeda de Destino:</label>
+    <select id="moeda-destino">
+      <option value="BRL">Real (BRL)</option>
+      <option value="USD">Dólar (USD)</option>
+      <option value="EUR">Euro (EUR)</option>
+      <option value="GBP">Libra Esterlina (GBP)</option>
+      <!-- Adicione mais moedas conforme necessário -->
+    </select>
 
-    <label for="c">Coeficiente c:</label>
-    <input type="number" id="c" placeholder="Ex: 2">
+    <label for="valor">Valor:</label>
+    <input type="number" id="valor" placeholder="Digite o valor" />
+    
+    <button onclick="converter()">Converter</button>
 
-    <button onclick="calcularRaizes()">Calcular Raízes</button>
+    <h3>Resultado: <span id="resultado">0</span></h3>
 
-    <div id="resultado"></div>
+    <p><strong>Cotação Atual:</strong> <span id="cotacao"></span></p>
   </div>
 
   <script src="script.js"></script>
