@@ -1,55 +1,32 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 50px;
-}
+function calcularRaizes() {
+  const a = parseFloat(document.getElementById("a").value);
+  const b = parseFloat(document.getElementById("b").value);
+  const c = parseFloat(document.getElementById("c").value);
+  const resultado = document.getElementById("resultado");
 
-h1 {
-  color: #333;
-}
+  if (isNaN(a) || isNaN(b) || isNaN(c)) {
+    resultado.innerHTML = "Por favor, insira valores válidos para a, b e c.";
+    return;
+  }
 
-.container {
-  background: #fff;
-  padding: 20px 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  max-width: 400px;
-  width: 100%;
-}
+  if (a === 0) {
+    resultado.innerHTML = "O valor de 'a' deve ser diferente de zero.";
+    return;
+  }
 
-label {
-  display: block;
-  margin-top: 15px;
-}
+  const delta = b * b - 4 * a * c;
+  let mensagem = `Delta (Δ) = ${delta}<br>`;
 
-input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
+  if (delta < 0) {
+    mensagem += "Não existem raízes reais.";
+  } else if (delta === 0) {
+    const x = -b / (2 * a);
+    mensagem += `Raiz única: x = ${x}`;
+  } else {
+    const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+    const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+    mensagem += `Duas raízes reais:<br>x₁ = ${x1}<br>x₂ = ${x2}`;
+  }
 
-button {
-  margin-top: 20px;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  background: #4CAF50;
-  color: white;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #45a049;
-}
-
-#resultado {
-  margin-top: 20px;
-  font-weight: bold;
+  resultado.innerHTML = mensagem;
 }
