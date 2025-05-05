@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerador de Senha Aleatória</title>
+  <title>Lista de Tarefas</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>Gerador de Senha Aleatória</h1>
-    <div class="senha-container">
-      <input type="text" id="senha" readonly>
-      <button id="gerar">Gerar Senha</button>
-    </div>
-    <p><strong>Senha gerada:</strong> <span id="resultado">Clique no botão para gerar</span></p>
+    <h1>Lista de Tarefas</h1>
+    
+    <!-- Input e botão para adicionar tarefa -->
+    <input type="text" id="nova-tarefa" placeholder="Digite uma tarefa">
+    <button id="adicionar-tarefa">Adicionar Tarefa</button>
+
+    <!-- Lista de tarefas -->
+    <ul id="lista-tarefas"></ul>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
